@@ -1,5 +1,5 @@
 {
-  "name": "nutgod",
+  "name": "dietet",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@electron/remote": "^2.0.9",
     "electron": "^22.0.1",
     "electron-packager": "^17.1.1",
     "mongodb": "^4.13.0"

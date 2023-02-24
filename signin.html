@@ -8,11 +8,24 @@
     <body>
         <div class="login-page">
             <div class="form">
-                <form class="login-form">
-                    <input type="text" placeholder="name" />
-                    <input type="password" placeholder="password" />
-                    <input type="text" placeholder="email address" />
-                    <button>create</button>
+                <form class="login-form" id="sign-form">
+                    <input
+                        type="text"
+                        placeholder="email address"
+                        id="email-sign"
+                    />
+                    <input type="text" placeholder="name" id="username-sign" />
+                    <input
+                        type="password"
+                        placeholder="password"
+                        id="password1-sign"
+                    />
+                    <input
+                        type="password"
+                        placeholder="repeat password"
+                        id="password2-sign"
+                    />
+                    <button id="btnSign" type="submit">Create User</button>
                     <p class="message">
                         Already registered? <a href="./login.html">Sign In</a>
                     </p>
@@ -20,5 +33,5 @@
             </div>
         </div>
     </body>
-    <script src=""></script>
+    <script src="./sign.js"></script>
 </html>

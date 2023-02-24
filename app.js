@@ -5,6 +5,8 @@ const uri =
 
 const client = new MongoClient(uri)
 
+//ESTO NO HACE NADA AÚN
+
 async function run() {
     try {
         const database = client.db('new_social-network');
