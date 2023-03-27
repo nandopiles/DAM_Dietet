@@ -35,7 +35,7 @@ run()
                     console.log("[+] User validated => " + users[i].name)
                     userSelected = users[i]
                     userFound = true
-                    window.location = "signin.html" //redireccionar a la vista utilizada (html)
+                    window.location = "main-window.html" //redireccionar a la vista utilizada (html)
                     return;
                 }
             }

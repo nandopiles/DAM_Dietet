@@ -1,13 +1,13 @@
 {
   "name": "dietet",
   "version": "1.0.0",
-  "description": "",
+  "description": "A nutritional app that contains an amount of recipes, filtered by 3 goals: lose weight, keep fit and gain muscle mass.",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "build": "electron-packager ."
   },
-  "author": "",
+  "author": "Ferran Piles",
   "license": "ISC",
   "dependencies": {
     "@electron/remote": "^2.0.9",

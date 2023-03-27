@@ -28,8 +28,8 @@ run()
                 email: document.getElementById("email-sign").value
             }
             users.push(newUser)
-            let insertResult = await usersCollection.insertOne(newUser)
-            console.log("[+] User Inserted")
+            await usersCollection.insertOne(newUser)
+            console.log("[+] User Inserted " + newUser)
         }
 
         let deleteData = () => {
@@ -55,7 +55,7 @@ run()
                 }
                 for (let i = 0; i < users.length; i++) {
                     if (users[i].name == document.getElementById("username-sign").value) {
-                        message = "User alredy exists"
+                        message = "User already exists"
                         dialog.showErrorBox("Error", message)
                         deleteData()
                         return;
