@@ -8,5 +8,29 @@
 
 .principal-photo {
     width: 100px;
-    height:100px;
+    height: 100px;
+}
+
+.default-profile-photo {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+body::-webkit-scrollbar {
+    width: 7px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 179, 87);
+    border-radius: 5px;
+}
+
+.scrollbar-style::-webkit-scrollbar {
+    width: 5px;
+}
+
+.scrollbar-style::-webkit-scrollbar-thumb {
+    background-color: rgb(160, 160, 160);
+    border-radius: 5px;
 }
