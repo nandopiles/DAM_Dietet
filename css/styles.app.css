@@ -12,8 +12,8 @@
 }
 
 .default-profile-photo {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
 }
 
@@ -33,4 +33,18 @@ body::-webkit-scrollbar-thumb {
 .scrollbar-style::-webkit-scrollbar-thumb {
     background-color: rgb(160, 160, 160);
     border-radius: 5px;
+}
+
+::-webkit-scrollbar {
+    display: block;
+}
+
+body {
+    overflow-y: scroll;
+}
+
+.background-photo {
+    background-image: url(../img/FondoDietet.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }

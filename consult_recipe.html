@@ -14,9 +14,31 @@
     <link rel="stylesheet" href="css/photon.min.css">
 
     <title>Dietet</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
 </head>
 
-<body>
+<body class="background-photo">
+    <!-- Navbar -->
+    <nav class="navbar bg-body-tertiary fixed-top bg-dark">
+        <div class="container-fluid">
+            <img src="img/SecundaryIcon.png" alt="Logo" class="principal-photo">
+            <h1 class="title-color">Dietet</h1>
+            <!-- Back Button -->
+            <p class="text-end">
+                <button type="button" class="btn btn-outline-danger btn-large" id="btnBack">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z">
+                        </path>
+                    </svg>
+                    Back
+                </button>
+            </p>
+        </div>
+    </nav><br><br><br><br>
+    <!-- Info Recipe -->
     <div class="container">
         <form class="mt-5">
             <!-- Title -->
@@ -26,26 +48,32 @@
             <hr>
             <!-- Ingredients -->
             <ul class="list-unstyled">
-                <li>Ingredients</li>
+                <li class="h3">Ingredients:</li>
                 <ul id="ingredients"></ul>
-            </ul>
+            </ul><br>
             <!-- Prep Time -->
             <dl class="row">
-                <dt class="col-sm-3">Prep Time: </dt>
-                <dd class="col-sm-9" id="prepTime"></dd>
+                <dt class="col-sm-3 h3">Prep Time &#10230;</dt>
+                <dd class="col-sm-9 lead" id="prepTime"></dd>
             </dl>
             <!-- Steps -->
             <ul class="list-unstyled">
-                <li>Steps</li>
+                <li class="h3">Steps:</li>
                 <ul id="steps"></ul>
-            </ul>
+            </ul><br>
             <!-- Author -->
             <dl class="row">
-                <dt class="col-sm-3">Author: </dt>
-                <dd class="col-sm-9" id="author"></dd>
-            </dl>
+                <dt class="col-sm-3 h3">Author &#10230;</dt>
+                <dd class="col-sm-9 lead" id="author"></dd>
+            </dl><br>
         </form>
-    </div> 
+    </div>
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Dietet 2023</p>
+        </div>
+    </footer>
 </body>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

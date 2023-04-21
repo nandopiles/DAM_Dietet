@@ -75,9 +75,10 @@ run()
                             <p class="mb-0">Prep Time: ${recipe.prepTime}</p>
                             <p class="mb-0">Author: ${recipe.author}</p>
                         </div>
-                        <button type="button" class="btn btn-outline-warning" id=btnRecipe${index}>View details »</button>
+                        <button type="button" class="btn btn-outline-warning btn-large" id=btnRecipe${index}><b class="lead">View Details »</b></button>
                     </div>
                 </div>`
+                // put a different font to the btn, smaller
             });
             document.getElementById("gallery").innerHTML = listRecipes
         }
@@ -91,7 +92,7 @@ run()
                 document.getElementById("btnRecipe" + index).addEventListener('click', (e) => {
                     e.preventDefault()
                     console.log(element.name);
-                    window.location = "consult_recipe.html?id=" + element._id
+                    window.location = "consult_recipe.html?id=" + element._id + "&username=" + username
                 })
             });
         }

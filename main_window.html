@@ -23,8 +23,9 @@
             <img src="img/SecundaryIcon.png" alt="Logo" class="principal-photo">
             <h1 class="title-color">Dietet</h1>
             <!-- Profile Button -->
-            <button class="navbar-toggler rounded btn btn-warning active" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" id="btnProfile">
+            <button class="navbar-toggler rounded btn btn-warning active btn-large" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
+                id="btnProfile">
                 <img src="img/DefaultProfilePicture.png" alt="Profile Picture" class="default-profile-photo">
             </button>
             <!-- Sidebar -->
@@ -32,16 +33,36 @@
                 aria-labelledby="offcanvasNavbarLabel">
                 <!-- Header Sidebar -->
                 <div class="offcanvas-header">
-                    <h2 class="offcanvas-title" id="welcomeText">Welcome, </h2>
+                    <h2 class="offcanvas-title fw-bold" id="welcomeText">Welcome, </h2>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <!-- Body Sidebar -->
                 <div class="offcanvas-body scrollbar-style">
                     <hr>
+                    <!-- Filter Check Boxes -->
+                    <p class="lead">Filter Recipes:</p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+                        <label class="form-check-label text-success fw-bold fs-6" for="flexCheckDefault">
+                            Fit
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                        <label class="form-check-label text-warning fw-bold fs-6" for="flexCheckChecked">
+                            Normal
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                        <label class="form-check-label text-danger fw-bold fs-6" for="flexCheckChecked">
+                            Unhealthy
+                        </label>
+                    </div>
                     <div id="sidebarBody"></div>
                     <!-- Log Out Button -->
                     <p class="text-end">
-                        <button type="button" class="btn btn-lg btn-outline-danger" id="btnLogout">
+                        <button type="button" class="btn btn-large btn-outline-danger" id="btnLogout">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-door-open-fill" viewBox="0 0 16 16">
                                 <path
