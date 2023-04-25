@@ -43,10 +43,10 @@ run()
         /**
          * Shows all the recipes saved on the Db in a good way
          */
-        let showRecipes = () => {
+        let showRecipes = (listFilteredRecipes) => {
             let listRecipes = ""
 
-            recipes.forEach((recipe, index) => {
+            listFilteredRecipes.forEach((recipe, index) => {
                 let category
                 switch (recipe.category) {
                     case 1:
@@ -78,17 +78,16 @@ run()
                         <button type="button" class="btn btn-outline-warning btn-large" id=btnRecipe${index}><b class="lead">View Details »</b></button>
                     </div>
                 </div>`
-                // put a different font to the btn, smaller
             });
             document.getElementById("gallery").innerHTML = listRecipes
         }
-        showRecipes()
+        showRecipes(recipes)
 
         /**
          * Creates the Listeners for seeing all the details of the recipe
          */
-        let createListenersRecipes = () => {
-            recipes.forEach((element, index) => {
+        let createListenersRecipes = (listRecipes) => {
+            listRecipes.forEach((element, index) => {
                 document.getElementById("btnRecipe" + index).addEventListener('click', (e) => {
                     e.preventDefault()
                     console.log(element.name);
@@ -96,5 +95,62 @@ run()
                 })
             });
         }
-        createListenersRecipes()
+        createListenersRecipes(recipes)
+
+        /**
+         * Checks the recipes that have to be shown indicated on the filters
+         */
+        let check = () => {
+            let selected = []
+            let listFilteredRecipes = []
+
+            if (document.getElementById("fitCheck").checked) {
+                selected.push("Fit")
+                recipes.forEach(recipe => {
+                    if (recipe.category == 1) {
+                        listFilteredRecipes.push(recipe)
+                    }
+                });
+            }
+            if (document.getElementById("normalCheck").checked) {
+                selected.push("Normal")
+                recipes.forEach(recipe => {
+                    if (recipe.category == 2) {
+                        listFilteredRecipes.push(recipe)
+                    }
+                });
+            }
+            if (document.getElementById("unhealthyCheck").checked) {
+                selected.push("Unhealthy")
+                recipes.forEach(recipe => {
+                    if (recipe.category == 3) {
+                        listFilteredRecipes.push(recipe)
+                    }
+                });
+            }
+            console.log("Selected => " + selected.join(", "));
+            showRecipes(listFilteredRecipes)
+            createListenersRecipes(listFilteredRecipes)
+        }
+
+        document.getElementById("fitCheck").addEventListener("click", check)
+        document.getElementById("normalCheck").addEventListener("click", check)
+        document.getElementById("unhealthyCheck").addEventListener("click", check)
+
+        /**
+         * SearchBox to search specific recipes
+         */
+        document.getElementById("searchBox").addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault()
+                let listRecipesFound = []
+                recipes.forEach(recipe => {
+                    if (recipe.name.toLowerCase().includes(document.getElementById("searchBox").value.toLowerCase())) {
+                        listRecipesFound.push(recipe)
+                    }
+                });
+                showRecipes(listRecipesFound)
+                createListenersRecipes(listRecipesFound)
+            }
+        })
     }).catch(console.dir)

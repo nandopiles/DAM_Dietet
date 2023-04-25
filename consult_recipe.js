@@ -61,9 +61,4 @@ run()
             document.getElementById("author").innerHTML = recipeSearched.author
         }
         fillInfoRecipe()
-
-        document.getElementById("btnDownload").addEventListener('click', (e) => {
-            e.preventDefault()
-
-        })
     }).catch(console.dir)
