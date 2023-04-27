@@ -1,4 +1,5 @@
 const { MongoClient } = require("mongodb");
+const ObjectId = require('mongodb').ObjectId;
 const { dialog } = require('@electron/remote')
 
 const uri =
@@ -32,7 +33,7 @@ run()
         const urlParams = new URLSearchParams(valor);
         var recipeId = urlParams.get('id');
         var username = urlParams.get('username')
-        console.log(username)
+        //console.log(username)
 
         const recipeSearched = recipes.find(obj => obj._id == recipeId);
         console.log(recipeSearched);
@@ -42,6 +43,14 @@ run()
             user = await usersCollection.findOne({ name: username })
             console.log("[*] Ready => " + user._id);
             client.close()
+
+            //gets the favorite list of the user selected
+            favsArray = user.favs
+
+            //changes the icon if the recipe is in the favsList already
+            if (favsArray.some(fav => fav.equals(recipeSearched._id))) {
+                document.getElementById("favoriteIcon").classList.replace('bi-heart', 'bi-heart-fill')
+            }
         }
         searchUser()
 
@@ -77,24 +86,36 @@ run()
         document.getElementById("btnFavorite").addEventListener('click', async (e) => {
             e.preventDefault()
 
-            if (document.getElementById("btnFavorite").classList.contains('bi-heart')) {
-                favsArray = user.favs
-                favsArray.push(recipeId)
+            if (document.getElementById("favoriteIcon").classList.contains('bi-heart')) {
+                //change the aspect of the Icon
+                document.getElementById("favoriteIcon").classList.replace('bi-heart', 'bi-heart-fill')
 
+                favsArray.push(recipeSearched._id)
                 await client.connect()
                 await usersCollection.updateOne(
                     { _id: user._id },
                     { $set: { favs: favsArray } }
                 )
-                console.log("[+] Recipe added to Favs");
                 client.close()
-                //change the aspect of the btn
-                document.getElementById("btnFavorite").classList.replace('bi-heart', 'bi-heart-fill')
-            } else if (document.getElementById("btnFavorite").classList.contains('bi-heart-fill')) {
-                //it's on favs, it have to delete the idRecipe from the list =>
+                console.log(`[+] Recipe "${recipeSearched.name}" added to Favs`);
+            } else {
+                //change the aspect of the Icon
+                document.getElementById("favoriteIcon").classList.replace('bi-heart-fill', 'bi-heart')
 
-                //change the aspect of the btn
-                document.getElementById("btnFavorite").classList.replace('bi-heart-fill', 'bi-heart')
+                let newFavsArray = []
+                //checks if the idRecipe is different from the one passed by parameter and pushes the id to a newFavsArray
+                favsArray.forEach(id => {
+                    if (!(id == recipeId)) {
+                        newFavsArray.push(id)
+                    }
+                });
+                await client.connect()
+                await usersCollection.updateOne(
+                    { _id: user._id },
+                    { $set: { favs: newFavsArray } }
+                )
+                client.close()
+                console.log(`[+] Recipe "${recipeSearched.name} deleted from Favs`);
             }
         })
     }).catch(console.dir)
