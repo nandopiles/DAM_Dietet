@@ -26,8 +26,8 @@ run()
         let userFound = false
 
         document.getElementById("btnLogin").addEventListener('click', (e) => {
-            e.preventDefault() //no recarga la página al apretar el botón
-            //el forEach no se puede forzar que termine
+            e.preventDefault()
+            //forEach cannot be forced to terminate
             for (let i = 0; i < users.length; i++) {
                 if (users[i].name == document.getElementById("username").value &&
                     users[i].password == document.getElementById("password").value) {

@@ -59,7 +59,52 @@
                             Unhealthy
                         </label>
                     </div>
-                    <div id="sidebarBody"></div>
+                    <hr>
+                    <!-- Edit Profile Button -->
+                    <div class="container">
+                        <p class="lead">Profile:</p>
+                        <button class="btn btn-outline-dark w-100" id="editProfile">
+                            <span class="fs-6 ">Edit Username</span>
+                        </button>
+                    </div>
+                    <!-- Info to Edit -->
+                    <div class="container">
+                        <div>
+                            <br>
+                            <p class="fs-6 d-none" id="textUsername">Username:</p>
+                            <input type="text" class="form-control d-none" id="username">
+                        </div><br>
+                        <p class="text-end">
+                            <button class="btn btn-success d-none" id="btnUpdate">
+                                <span class="fs-6">Update</span>
+                            </button>
+                        </p>
+                    </div>
+                    <!-- Edit Password Button -->
+                    <div class="container">
+                        <button class="btn btn-outline-dark w-100" id="editPassword">
+                            <span class="fs-6 ">Change Password</span>
+                        </button>
+                    </div>
+                    <!-- Info to Edit -->
+                    <div class="container">
+                        <br>
+                        <div class="row">
+                            <p class="fs-6 d-none" id="textPasswords">Password:</p>
+                            <div class="col">
+                                <input type="password" class="form-control d-none" id="password1">
+                            </div>
+                            <div class="col">
+                                <input type="password" class="form-control d-none" id="password2">
+                            </div>
+                        </div><br>
+                        <p class="text-end">
+                            <button class="btn btn-success d-none" id="btnUpdatePassword">
+                                <span class="fs-6">Update</span>
+                            </button>
+                        </p>
+                    </div>
+                    <hr>
                     <!-- Log Out Button -->
                     <p class="text-end">
                         <button type="button" class="btn btn-large btn-outline-danger" id="btnLogout">

@@ -8,14 +8,19 @@ const client = new MongoClient(uri);
 
 let recipesCollection
 let recipes
+let usersCollection
+let users
+let selectedUser
 
 async function run() {
     try {
         const database = client.db('Dietet_db');
         recipesCollection = database.collection('recipes');
+        usersCollection = database.collection('users')
 
         recipes = await recipesCollection.find({}).toArray()
-        recipes.forEach(recipe => console.log(recipe))
+        users = await usersCollection.find({}).toArray()
+        //recipes.forEach(recipe => console.log(recipe))
     } finally {
         await client.close();
     }
@@ -31,6 +36,19 @@ run()
 
         // prints the username on the sidebar
         document.getElementById("welcomeText").innerHTML = document.getElementById("welcomeText").textContent + username + "!!"
+
+        /**
+         * Fills the fields with the info of the user (email and username)
+         */
+        let fillEditInfo = async () => {
+            await client.connect()
+            selectedUser = await usersCollection.findOne({ name: username })
+            client.close()
+
+            document.getElementById("username").value = selectedUser.name
+            console.log("[+] User info filled");
+        }
+        fillEditInfo()
 
         /**
          * Button for Logging Out
@@ -75,7 +93,7 @@ run()
                             <p class="mb-0">Prep Time: ${recipe.prepTime}</p>
                             <p class="mb-0">Author: ${recipe.author}</p>
                         </div>
-                        <button type="button" class="btn btn-outline-warning btn-large" id=btnRecipe${index}><b class="lead">View Details »</b></button>
+                        <button type="button" class="btn btn-outline-warning btn-large" id=btnRecipe${index}><b class="lead fs-6">View Details »</b></button>
                     </div>
                 </div>`
             });
@@ -151,6 +169,101 @@ run()
                 });
                 showRecipes(listRecipesFound)
                 createListenersRecipes(listRecipesFound)
+            }
+        })
+
+        /**
+         * Shows/hides the field of the username
+         */
+        document.getElementById("editProfile").addEventListener('click', (e) => {
+            e.preventDefault()
+
+            document.getElementById("textUsername").classList.toggle('d-none')
+            document.getElementById("username").classList.toggle('d-none')
+            document.getElementById("btnUpdate").classList.toggle('d-none')
+        })
+
+        /**
+         * Shows/hides the field of the password
+         */
+        document.getElementById("editPassword").addEventListener('click', (e) => {
+            e.preventDefault()
+
+            document.getElementById("textPasswords").classList.toggle('d-none')
+            document.getElementById("password1").classList.toggle('d-none')
+            document.getElementById("password2").classList.toggle('d-none')
+            document.getElementById("btnUpdatePassword").classList.toggle('d-none')
+        })
+
+        /**
+         * Checks if the username is already in use
+         * @returns if the operation can be done
+         */
+        let checkUserInfoIsValid = () => {
+            for (let i = 0; i < users.length; i++) {
+                if (users[i].name == document.getElementById("username").value) {
+                    dialog.showErrorBox('Error', 'Username is already in use.')
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /**
+         * Updates the username
+         */
+        document.getElementById("btnUpdate").addEventListener('click', async (e) => {
+            e.preventDefault()
+
+            if (checkUserInfoIsValid() && confirm("Are you sure to update the Username to " + document.getElementById("username").value + "?")) {
+                await client.connect()
+                await usersCollection.updateOne(
+                    { _id: selectedUser._id },
+                    {
+                        $set:
+                        {
+                            name: document.getElementById("username").value
+                        }
+                    }
+                )
+                client.close()
+                document.getElementById("welcomeText").innerHTML = `Welcome, ${document.getElementById("username").value}!!`
+                console.log("[+] Username updated");
+            }
+        })
+
+        /**
+         * Checks if the passwords are valid
+         * @returns if the operation can be done
+         */
+        let checkPasswords = () => {
+            if (document.getElementById("password1").value != document.getElementById("password2").value ||
+                document.getElementById("password1").value == "" || document.getElementById("password2").value == "") {
+                dialog.showErrorBox('Error', 'Problem with the passwords.')
+                return false;
+            }
+            return true;
+        }
+
+        /**
+         * Updates the password of the user
+         */
+        document.getElementById("btnUpdatePassword").addEventListener('click', async (e) => {
+            e.preventDefault()
+
+            if (checkPasswords() && confirm("Are you sure to update the password?")) {
+                await client.connect()
+                await usersCollection.updateOne(
+                    { _id: selectedUser._id },
+                    {
+                        $set:
+                        {
+                            password: document.getElementById("password1").value
+                        }
+                    }
+                )
+                client.close()
+                console.log("[+] Password updated");
             }
         })
     }).catch(console.dir)
