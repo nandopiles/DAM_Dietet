@@ -59,7 +59,7 @@ run()
         })
 
         /**
-         * Shows all the recipes saved on the Db in a good way
+         * Prints all the recipes saved on the Db in a good way
          */
         let showRecipes = (listFilteredRecipes) => {
             let listRecipes = ""
@@ -265,5 +265,14 @@ run()
                 client.close()
                 console.log("[+] Password updated");
             }
+        })
+
+        /**
+         * Redirects to other page where is a list with the Favs Recipes
+         */
+        document.getElementById("btnFavorite").addEventListener('click', async (e) => {
+            e.preventDefault()
+
+            window.location = "fav_page.html?user=" + document.getElementById("username").value
         })
     }).catch(console.dir)

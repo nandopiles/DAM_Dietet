@@ -11,6 +11,11 @@
     height: 100px;
 }
 
+.lists-photos {
+    width: 30px;
+    height: 30px;
+}
+
 .default-profile-photo {
     width: 25px;
     height: 25px;
