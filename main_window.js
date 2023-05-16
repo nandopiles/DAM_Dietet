@@ -230,6 +230,8 @@ run()
                 client.close()
                 document.getElementById("welcomeText").innerHTML = `Welcome, ${document.getElementById("username").value}!!`
                 console.log("[+] Username updated");
+            } else {
+                document.getElementById("username").value = username
             }
         })
 
