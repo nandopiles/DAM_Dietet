@@ -203,6 +203,7 @@ run()
             for (let i = 0; i < users.length; i++) {
                 if (users[i].name == document.getElementById("username").value) {
                     dialog.showErrorBox('Error', 'Username is already in use.')
+                    document.getElementById("username").value = username
                     return false;
                 }
             }
