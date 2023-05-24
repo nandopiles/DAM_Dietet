@@ -16,7 +16,6 @@ async function run() {
         users = await usersCollection.find({}).toArray()
         users.forEach(user => console.log(user))
     } finally {
-        //Cliente se cerrará cuando la aplicación finalice/error
         await client.close();
     }
 }
@@ -27,7 +26,7 @@ run()
 
         document.getElementById("btnLogin").addEventListener('click', (e) => {
             e.preventDefault()
-            //forEach cannot be forced to terminate
+            //forEach cannot be forced to finish
             for (let i = 0; i < users.length; i++) {
                 if (users[i].name == document.getElementById("username").value &&
                     users[i].password == document.getElementById("password").value) {
